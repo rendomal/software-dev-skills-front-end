@@ -8,7 +8,7 @@ Install dependencies: `npm install http-server -g`
 
 
 Run the following commands to download the project and launch local server containing the site: +
-`https://github.com/rendomal/software-dev-skills-front-end.git` +
+`git clone https://github.com/rendomal/software-dev-skills-front-end.git` +
 `cd software-dev-skills-front-end/final-project/dist` +
 `http-server`
 
