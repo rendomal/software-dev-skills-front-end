@@ -1,0 +1,54 @@
+
+.list {
+
+  display: flex;
+  flex-direction: column;
+
+  &-item {
+
+    display: inline-flex;
+    justify-content: space-between;
+    border: 1px lighten($background-color, 10) solid;
+    margin: 2px 5px;
+
+    @include easeOut();
+
+    &:hover {
+      border: 2px $primary-color solid;
+      background: lighten($background-color, 5);
+    }
+
+    img, .name, .price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      object-fit: cover;
+      image-rendering: smooth;
+      width: 50px;
+      height: 50px;
+
+      &:hover {
+        border-color: $primary-color;
+
+        @include easeOut();
+      }
+    }
+
+    .name {
+      margin: 2px 0;
+      span {
+        color: $primary-color;
+      }
+    }
+
+    .price {
+      margin-bottom: 2px;
+      span {
+        color: $secondary-color;
+      }
+    }
+  }
+}

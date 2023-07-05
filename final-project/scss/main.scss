@@ -1,0 +1,31 @@
+@import 'globals';
+@import 'colors';
+@import 'transitions';
+
+@import 'header';
+@import 'view-grid';
+@import 'view-card';
+@import 'view-list';
+
+body {
+  background: $background-color;
+  color: $text-color;
+
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  min-height: calc(100vh - $footer-size);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: $background-color-footer;
+  height: $footer-size;
+}
+
+@import 'menu';

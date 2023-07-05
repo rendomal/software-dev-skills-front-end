@@ -1,0 +1,210 @@
+// Media Query Mixins
+@mixin mediaSm {
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}
+@mixin mediaMd {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin mediaLg {
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    @content;
+  }
+}
+@mixin mediaXl {
+  @media screen and (min-width: 1171px) {
+    @content;
+  }
+}
+
+@include mediaMd {
+  main {
+    align-items: center;
+    text-align: center;
+
+    .lg-heading {
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+  }
+
+  ul.menu-nav, div.menu-branding {
+    float: none;
+    width: 100%;
+    height: 50vh;
+    min-height: 0;
+
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  div.menu-nav {
+    width: 100%;
+    height: 50vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px;
+  }
+
+  .menu-branding {
+    height: 25vh;
+    transform: translate3d(100%, 0, 0);
+
+    .portrait {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}
+
+
+.menu-btn {
+  position: fixed;
+  z-index: 3;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  color: $text-color;
+
+  @include easeOut();
+
+  .btn-line {
+    width: 28px;
+    height: 3px;
+    margin: 0 0 5px 0;
+    background: $text-color;
+
+    @include easeOut();
+
+    // With this we can make the animation rotating center of the area instead of moving around
+    &:nth-child(3) { margin: 0; };
+  }
+
+  &.close {
+    transform: rotate(180deg);
+
+    .btn-line {
+      &:nth-child(1) {
+        transform: translate(0px, 8px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translate(0px, -8px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+
+  &.show {
+    visibility: visible;
+  }
+
+  &-branding, &-nav {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  &-nav {
+    margin: 0;
+    padding: 0;
+    background: rgba($background-color, 0.985);
+    list-style: none;
+    transform: translate3d(0, -100%, 0);
+    @include easeOut();
+
+    h1 {
+      color: $primary-color;
+      font-size: 2rem;
+    }
+
+    .nav-bio-text {
+      text-align: center;
+      font-size: 1.5rem;
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+
+    // Slide from top
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  &-branding {
+    background: rgba($background-color-footer, 0.985);
+    transform: translate3d(0, 100%, 0);
+    @include easeOut();
+
+    // Slide from bottom
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .portrait {
+      width: 250px;
+      height: 250px;
+      background: url(../assets/profile-pic.jpg);
+      border-radius: 50%; // Will make circular border
+      border: solid 3px $primary-color;
+
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  }
+
+  .nav-item {
+    transform: translate3d(600px, 0, 0);
+    @include easeOut();
+
+    &.show {
+      // Slide in from right
+      transform: translate3d(0, 0, 0);
+    }
+
+    &.current > a {
+      color: $primary-color;
+    }
+  }
+
+  .nav-link {
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: 400;
+    color: $text-color;
+    text-decoration: none;
+    @include easeOut();
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+@for $x from 1 through 4 {
+  .nav-item:nth-child(#{$x}) {
+    transition-delay: $x * 0.05s;
+  }
+}

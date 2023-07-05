@@ -1,0 +1,55 @@
+
+.grid {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+
+  grid-gap: 0.7rem;
+  padding: 0 0.7rem;
+
+  &-item {
+
+    display: block;
+    border: 2px lighten($background-color, 10) solid;
+
+    @include easeOut();
+
+    &:hover {
+      border: 2px $primary-color solid;
+      background: lighten($background-color, 5);
+    }
+
+    img, .name, .price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      object-fit: cover;
+      image-rendering: smooth;
+      width: 100%;
+      height: 250px;
+
+      &:hover {
+        border-color: $primary-color;
+
+        @include easeOut();
+      }
+    }
+
+    .name {
+      margin: 2px 0;
+      span {
+        color: $primary-color;
+      }
+    }
+
+    .price {
+      margin-bottom: 2px;
+      span {
+        color: $secondary-color;
+      }
+    }
+  }
+}
